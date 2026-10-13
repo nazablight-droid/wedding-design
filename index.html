@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ines y Pablo · 11 de diciembre</title>
+<meta name="description" content="Ines y Pablo se casan el 11 de diciembre en Hacienda Los Ángeles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --crema:#FBEEE4; --durazno:#F4D9C6; --terracota:#C98B64; --cafe:#7A4E3A;
+  --azul:#5B8AA3; --azul-hondo:#3D6580;
+  --serif:"Playfair Display",Georgia,serif; --sans:"Montserrat",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--crema);color:var(--cafe);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--azul-hondo);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--terracota)}
+section{padding:5.5rem 1.5rem;max-width:880px;margin:auto;text-align:center}
+h2{font-size:clamp(1.9rem,5vw,2.6rem);font-style:italic;margin-bottom:.4rem}
+.sub{font-size:.9rem;letter-spacing:.06em;margin-bottom:2.5rem}
+p{max-width:52ch;margin-inline:auto}
+.fondo{background:var(--durazno)}
+
+/* Marcos de foto: la imagen cubre el texto cuando existe el archivo */
+.foto{position:relative;overflow:hidden;display:grid;place-items:center;background:rgba(255,255,255,.35);border:1.5px dashed var(--terracota);color:var(--terracota);font-size:.8rem;text-align:center;padding:1rem}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.oval{border-radius:50%;aspect-ratio:3/4}
+
+/* Portada */
+.hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;max-width:none;padding:0;text-align:left;position:relative;overflow:hidden}
+.acuarela{position:relative;height:100%;min-height:60vh;display:grid;place-items:center}
+.acuarela i{position:absolute;border-radius:50%;filter:blur(22px)}
+.acuarela .a{width:74%;height:46%;left:-12%;top:14%;background:var(--azul);opacity:.75}
+.acuarela .b{width:58%;height:34%;left:6%;top:44%;background:var(--azul-hondo);opacity:.55}
+.acuarela .c{width:46%;height:38%;left:-8%;top:6%;background:#EBBF9C;opacity:.9}
+.acuarela .d{width:34%;height:24%;left:30%;top:62%;background:#E7A98B;opacity:.6}
+.acuarela i{animation:respira 14s ease-in-out infinite}
+.acuarela .a{animation-duration:16s}
+.acuarela .b{animation-duration:19s;animation-delay:-6s}
+.acuarela .c{animation-duration:15s;animation-delay:-3s}
+.acuarela .d{animation-duration:21s;animation-delay:-10s}
+@keyframes respira{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(4%,-5%) scale(1.12)}}
+.acuarela .oval{position:relative;width:min(68%,320px);box-shadow:0 0 0 8px var(--crema)}
+.titulo{padding:3rem 2.5rem 3rem 1rem;animation:aparece 1.4s ease both;position:relative;z-index:2}
+.petalos{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.petalo{position:absolute;top:0;border-radius:150% 0 150% 0;opacity:0;animation:cae linear infinite;will-change:transform}
+@keyframes cae{
+  0%{transform:translate(0,-30px) rotate(0);opacity:0}
+  8%{opacity:var(--op)}
+  50%{transform:translate(var(--x),calc(var(--caida)*.5)) rotate(calc(var(--giro)*.5))}
+  92%{opacity:var(--op)}
+  100%{transform:translate(calc(var(--x)*-.4),var(--caida)) rotate(var(--giro));opacity:0}
+}
+.titulo h1{font-size:clamp(3rem,8.5vw,6rem);font-style:italic;line-height:1.05;letter-spacing:-.01em}
+.titulo .y{display:block;font-size:.45em;font-style:normal;font-family:var(--sans);font-weight:300;color:var(--cafe);letter-spacing:.08em;margin:.4rem 0}
+.titulo p{margin:1.5rem 0 0;font-size:.85rem;letter-spacing:.14em;font-weight:500;max-width:none}
+.titulo .fecha{font-family:var(--serif);font-style:italic;font-size:1.15rem;letter-spacing:.02em;font-weight:400;margin-top:.5rem}
+@keyframes aparece{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* Aparición suave (solo se activa con JS) */
+.rev{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+.rev.vis{opacity:1;transform:none}
+
+/* Cuenta regresiva y calendario */
+.cuenta{display:flex;justify-content:center;gap:clamp(.8rem,4vw,2.5rem);margin:2rem 0}
+.cuenta div{min-width:4.2rem}
+.cuenta b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,8vw,3.4rem);color:var(--azul-hondo);line-height:1.1}
+.cuenta span{font-size:.78rem;letter-spacing:.1em}
+.cal{width:min(100%,290px);margin:0 auto;background:var(--crema);border-radius:14px;padding:1rem .9rem;font-size:.8rem}
+.cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+.cal-top strong{font-family:var(--serif);font-weight:500;font-size:1.05rem;color:var(--azul-hondo);text-transform:capitalize}
+.cal-top button{background:none;border:0;color:var(--azul-hondo);font-size:1.3rem;cursor:pointer;padding:0 .5rem;line-height:1}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+.cal-grid .dow{font-weight:500;color:var(--terracota);font-size:.7rem}
+.cal-grid span{aspect-ratio:1;display:grid;place-items:center;border-radius:50%}
+.cal-grid .hoy{background:var(--azul-hondo);color:var(--crema);font-weight:600}
+.cal-grid .boda{border:1.5px solid var(--terracota);color:var(--terracota);font-weight:600}
+.cal-nota{margin-top:.5rem;font-size:.72rem}
+
+/* Lugar */
+.marco{border:1px solid var(--terracota);padding:2rem 1.5rem 2.5rem;border-radius:200px 200px 6px 6px}
+.marco .oval{width:min(60%,240px);margin:0 auto 1.5rem}
+.marco h3{font-size:1.7rem;font-style:italic}
+.boton{display:inline-block;margin-top:1.5rem;padding:.8rem 1.8rem;border:1px solid var(--azul-hondo);color:var(--azul-hondo);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.06em;border-radius:999px;background:transparent;cursor:pointer;font-family:var(--sans);transition:background .2s,color .2s}
+.boton:hover{background:var(--azul-hondo);color:var(--crema)}
+.boton.lleno{background:var(--azul-hondo);color:var(--crema)}
+.boton.lleno:hover{background:var(--cafe);border-color:var(--cafe)}
+
+/* Línea de tiempo (historia e itinerario) */
+.linea{list-style:none;padding:0;max-width:520px;margin:0 auto;position:relative;text-align:left}
+.linea::before,.linea::after{content:"";position:absolute;left:5.2rem;top:.5rem;bottom:.5rem;width:1px;background:var(--terracota)}
+.linea::before{opacity:.25}
+.linea::after{transform-origin:top}
+.js .linea::after{transform:scaleY(var(--p,0))}
+.linea li{display:grid;grid-template-columns:4.2rem 1fr;gap:2rem;padding:.9rem 0;position:relative}
+.linea li::before{content:"";position:absolute;left:4.95rem;top:1.55rem;width:.55rem;height:.55rem;border-radius:50%;background:var(--azul-hondo);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.js .linea li::before{transform:scale(0)}
+.js .linea li.on::before{transform:scale(1)}
+.linea .cuando{font-family:var(--serif);font-size:1.25rem;color:var(--azul-hondo);text-align:right;line-height:1.5}
+.linea h3{font-size:1.25rem;font-style:italic}
+.linea p{margin:.2rem 0 0;font-size:.92rem}
+
+/* Padrinos */
+.padrinos{display:grid;gap:2.2rem;max-width:520px;margin:0 auto}
+.padrinos h3{font-size:1.3rem;font-style:italic;margin-bottom:.2rem}
+.padrinos p{font-size:1rem}
+
+/* Galería */
+.galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.galeria .foto{aspect-ratio:1;border-radius:6px}
+.galeria .foto:nth-child(1),.galeria .foto:nth-child(6){grid-row:span 2;aspect-ratio:auto}
+
+/* RSVP */
+form{max-width:440px;margin:2rem auto 0;text-align:left;display:grid;gap:1.1rem}
+label{font-size:.85rem;font-weight:500;display:grid;gap:.35rem}
+input[type=text],input[type=number],textarea{font:inherit;font-weight:300;color:var(--cafe);background:var(--crema);border:1px solid var(--terracota);border-radius:6px;padding:.7rem .9rem;width:100%}
+.opciones{display:flex;gap:.8rem;flex-wrap:wrap}
+.opciones label{display:flex;align-items:center;gap:.5rem;font-weight:400;border:1px solid var(--terracota);border-radius:999px;padding:.55rem 1.1rem;cursor:pointer}
+.opciones input{accent-color:var(--azul-hondo)}
+.fila{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+form .boton{justify-self:center;margin-top:.5rem}
+.oculto{display:none}
+#gracias{display:none;margin-top:2rem;font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--azul-hondo)}
+
+footer{padding:4rem 1.5rem;text-align:center;background:var(--azul-hondo);color:var(--crema)}
+footer h2{color:var(--crema);margin-bottom:.5rem}
+footer p{font-size:.85rem}
+
+@media(max-width:700px){
+  .hero{grid-template-columns:1fr;text-align:center}
+  .acuarela{min-height:0;padding:2.5rem 0 1rem}
+  .acuarela .oval{width:min(62%,250px)}
+  .titulo{padding:1.5rem 1.5rem 4rem}
+  .linea::before,.linea::after{left:4.2rem}
+  .linea li{grid-template-columns:3.4rem 1fr;gap:1.6rem}
+  .linea li::before{left:3.95rem}
+  .galeria{grid-template-columns:repeat(2,1fr)}
+  .galeria .foto:nth-child(6){grid-row:auto;aspect-ratio:1}
+}
+@media(prefers-reduced-motion:reduce){.petalos{display:none}.titulo,.acuarela i{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="inicio">
+  <div class="petalos" id="petalos" aria-hidden="true"></div>
+  <div class="acuarela">
+    <i class="c" aria-hidden="true"></i><i class="a" aria-hidden="true"></i><i class="b" aria-hidden="true"></i><i class="d" aria-hidden="true"></i>
+    <figure class="foto oval"><span>Foto principal<br>(1)</span><img data-foto="1" alt="Ines y Pablo"></figure>
+  </div>
+  <div class="titulo">
+    <h1>Ines<span class="y">y</span>Pablo</h1>
+    <p>Una boda en Hacienda Los Ángeles</p>
+    <p class="fecha">11 de diciembre de 2026</p>
+  </div>
+</header>
+
+<div class="fondo">
+  <section id="fecha">
+    <h2>Nos casamos</h2>
+    <p>Con mucha alegría queremos compartir contigo el día en que comienza nuestra historia juntos. Tu presencia lo hará inolvidable.</p>
+    <div class="cuenta" role="timer" aria-live="off">
+      <div><b id="d">0</b><span>días</span></div>
+      <div><b id="h">0</b><span>horas</span></div>
+      <div><b id="m">0</b><span>min</span></div>
+      <div><b id="s">0</b><span>seg</span></div>
+    </div>
+    <div class="cal" aria-label="Calendario">
+      <div class="cal-top">
+        <button type="button" id="ant" aria-label="Mes anterior">‹</button>
+        <strong id="mes"></strong>
+        <button type="button" id="sig" aria-label="Mes siguiente">›</button>
+      </div>
+      <div class="cal-grid" id="rejilla"></div>
+      <p class="cal-nota">Hoy en azul · el día de la boda con círculo</p>
+    </div>
+  </section>
+</div>
+
+<section id="historia">
+  <h2>Nuestra historia</h2>
+  <p class="sub">Cómo llegamos aquí</p>
+  <ol class="linea">
+    <li><span class="cuando">2013</span><div><h3>Nos conocimos</h3><p>Una mañana de trabajo que se hizo interminable — y desde entonces no nos separamos.</p></div></li>
+    <li><span class="cuando">2014</span><div><h3>Nuestro primer viaje</h3><p>Recorrimos montaña arriba una pequeña montaña local, cargados de sueños y aventura.</p></div></li>
+    <li><span class="cuando">2016</span><div><h3>La propuesta</h3><p>Bajo muchas aventuras nos prometimos mucho amor.</p></div></li>
+  </ol>
+</section>
+
+<div class="fondo">
+  <section id="padrinos">
+    <h2>Padrinos</h2>
+    <p class="sub">Quienes nos acompañan</p>
+    <div class="padrinos">
+      <div><h3>Padrinos de velación</h3><p>Omar Castro y Elisa Roman</p></div>
+      <div><h3>Padrinos de anillos</h3><p>Elias Ferndez y Catia Rosales</p></div>
+      <div><h3>Padrinos de lazo</h3><p>Arturo Paz y Natali Cortes</p></div>
+    </div>
+  </section>
+</div>
+
+<section id="lugar">
+  <h2>Dónde será</h2>
+  <p class="sub">Viernes 11 de diciembre de 2026 · 1:00 pm</p>
+  <div class="marco">
+    <figure class="foto oval"><span>Foto del lugar<br>(10)</span><img data-foto="10" alt="Hacienda Los Ángeles"></figure>
+    <h3>Hacienda Los Ángeles</h3>
+    <a class="boton" href="https://www.google.com/maps/search/?api=1&query=Hacienda+Los+Angeles" target="_blank" rel="noopener">Ver ubicación en el mapa</a>
+  </div>
+</section>
+
+<div class="fondo">
+  <section id="itinerario">
+    <h2>Itinerario</h2>
+    <p class="sub">Programa del día</p>
+    <ol class="linea">
+      <li><span class="cuando">1:00 pm</span><div><h3>Ceremonia religiosa</h3><p>Jardín Principal</p></div></li>
+      <li><span class="cuando">2:30 pm</span><div><h3>Cóctel de bienvenida</h3><p>Terraza</p></div></li>
+      <li><span class="cuando">4:00 pm</span><div><h3>Recepción y comida</h3><p>Salón Hacienda</p></div></li>
+      <li><span class="cuando">7:00 pm</span><div><h3>¡Fiesta!</h3><p>Hasta el amanecer</p></div></li>
+    </ol>
+  </section>
+</div>
+
+<section id="galeria">
+  <h2>Galería de fotos</h2>
+  <p class="sub">Nuestros momentos</p>
+  <div class="galeria">
+    <figure class="foto"><span>2</span><img data-foto="2" alt="Foto 1 de la galería"></figure>
+    <figure class="foto"><span>3</span><img data-foto="3" alt="Foto 2 de la galería"></figure>
+    <figure class="foto"><span>4</span><img data-foto="4" alt="Foto 3 de la galería"></figure>
+    <figure class="foto"><span>5</span><img data-foto="5" alt="Foto 4 de la galería"></figure>
+    <figure class="foto"><span>6</span><img data-foto="6" alt="Foto 5 de la galería"></figure>
+    <figure class="foto"><span>7</span><img data-foto="7" alt="Foto 6 de la galería"></figure>
+  </div>
+</section>
+
+<div class="fondo">
+  <section id="rsvp">
+    <h2>Confirma tu asistencia</h2>
+    <p>Cuéntanos si nos acompañarás para reservar tu lugar.</p>
+    <form name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form">
+      <input type="hidden" name="form-name" value="rsvp">
+      <p class="oculto"><label>No llenar: <input name="bot-field"></label></p>
+      <label>Nombre completo <input type="text" name="nombre" required autocomplete="name"></label>
+      <div class="opciones" role="radiogroup" aria-label="Asistencia">
+        <label><input type="radio" name="asistencia" value="Sí asistiré" required> Sí asistiré</label>
+        <label><input type="radio" name="asistencia" value="No podré asistir"> No podré asistir</label>
+      </div>
+      <div class="fila">
+        <label>Adultos <input type="number" name="adultos" min="0" max="10" value="1"></label>
+        <label>Niños <input type="number" name="ninos" min="0" max="10" value="0"></label>
+      </div>
+      <label>Mensaje para los novios (opcional) <textarea name="mensaje" rows="3"></textarea></label>
+      <button class="boton lleno" type="submit">Enviar confirmación</button>
+    </form>
+    <p id="gracias" role="status">¡Gracias! Recibimos tu confirmación.</p>
+  </section>
+</div>
+
+<footer>
+  <h2>Gracias por acompañarnos</h2>
+  <p>Ines &amp; Pablo · 11 · 12 · 2026</p>
+</footer>
+
+<script>
+// Cuenta regresiva: 11 de diciembre de 2026, 1:00 pm (hora local del visitante)
+const BODA = new Date(2026, 11, 11, 13, 0, 0);
+function tic(){
+  const r = Math.max(0, BODA - Date.now()), dia = 864e5, hora = 36e5, min = 6e4;
+  d.textContent = Math.floor(r/dia);
+  h.textContent = Math.floor(r%dia/hora);
+  m.textContent = Math.floor(r%hora/min);
+  s.textContent = Math.floor(r%min/1000);
+}
+tic(); setInterval(tic, 1000);
+
+// Calendario: abre en el mes actual y marca el día de hoy
+const hoy = new Date();
+let vista = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+function pintar(){
+  const y = vista.getFullYear(), mo = vista.getMonth();
+  mes.textContent = vista.toLocaleDateString('es-MX', {month:'long', year:'numeric'});
+  let html = ['D','L','M','M','J','V','S'].map(x => `<span class="dow">${x}</span>`).join('');
+  html += '<span></span>'.repeat(new Date(y, mo, 1).getDay());
+  for(let i = 1, n = new Date(y, mo + 1, 0).getDate(); i <= n; i++){
+    let c = '';
+    if(y === hoy.getFullYear() && mo === hoy.getMonth() && i === hoy.getDate()) c = 'hoy';
+    else if(y === BODA.getFullYear() && mo === BODA.getMonth() && i === BODA.getDate()) c = 'boda';
+    html += `<span class="${c}">${i}</span>`;
+  }
+  rejilla.innerHTML = html;
+}
+ant.onclick = () => { vista.setMonth(vista.getMonth() - 1); pintar(); };
+sig.onclick = () => { vista.setMonth(vista.getMonth() + 1); pintar(); };
+pintar();
+
+// Fotos: busca 1, 2, 3... con extensión jpg, jpeg, png o webp
+document.querySelectorAll('img[data-foto]').forEach(img => {
+  const ext = ['jpg','jpeg','png','webp','JPG','JPEG','PNG'];
+  let i = 0;
+  img.onerror = () => { i++; i < ext.length ? img.src = `${img.dataset.foto}.${ext[i]}` : img.remove(); };
+  img.src = `${img.dataset.foto}.${ext[0]}`;
+});
+
+// Pétalos cayendo en la portada (tenues, en los tonos de la paleta)
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const caja = document.getElementById('petalos');
+  const colores = ['#F4D9C6','#EBBF9C','#E7A98B','#F7C8B8','#B9D0DD'];
+  const n = innerWidth < 700 ? 9 : 16;
+  const alto = () => caja.parentElement.offsetHeight + 40;
+  for(let i = 0; i < n; i++){
+    const p = document.createElement('i');
+    const t = 9 + Math.random() * 10;
+    p.className = 'petalo';
+    p.style.cssText = `left:${Math.random()*100}%;width:${9+Math.random()*9}px;height:${7+Math.random()*7}px;background:${colores[i%colores.length]};--op:${.45+Math.random()*.3};--x:${(Math.random()*120-60).toFixed(0)}px;--giro:${(Math.random()*500-250).toFixed(0)}deg;animation-duration:${t.toFixed(1)}s;animation-delay:${(-Math.random()*t).toFixed(1)}s`;
+    caja.appendChild(p);
+  }
+  const fijar = () => caja.style.setProperty('--caida', alto() + 'px');
+  fijar(); addEventListener('resize', fijar);
+}
+
+// Efectos de movimiento (se omiten si el visitante prefiere menos animación)
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); }
+  }), {threshold:.15});
+  document.querySelectorAll('section h2, section .sub, section > p:not(#gracias), .cuenta, .cal, .marco, .padrinos > div, .galeria .foto, .linea li, form').forEach(el => {
+    el.classList.add('rev');
+    if(el.parentElement.matches('.galeria,.padrinos')) el.style.transitionDelay = ([...el.parentElement.children].indexOf(el) * 0.1) + 's';
+    io.observe(el);
+  });
+  const lineas = document.querySelectorAll('.linea');
+  const dibujar = () => {
+    const y = innerHeight * .7;
+    lineas.forEach(l => {
+      const r = l.getBoundingClientRect();
+      l.style.setProperty('--p', Math.min(1, Math.max(0, (y - r.top) / r.height)));
+      l.querySelectorAll('li').forEach(li => li.classList.toggle('on', li.getBoundingClientRect().top < y));
+    });
+  };
+  addEventListener('scroll', dibujar, {passive:true});
+  addEventListener('resize', dibujar);
+  dibujar();
+}
+
+// Envío del RSVP a Netlify Forms sin recargar la página
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  try{
+    const r = await fetch('/', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:new URLSearchParams(new FormData(form)).toString()});
+    if(!r.ok) throw 0;
+    form.style.display = 'none';
+    gracias.style.display = 'block';
+  }catch{ alert('No se pudo enviar. Inténtalo de nuevo en un momento.'); }
+});
+</script>
+</body>
+</html>
